@@ -1,9 +1,10 @@
 "use client";
 
 import SetColor from "@/app/components/products/SetColor";
+import SetQuantity from "@/app/components/products/SetQuantity";
 import { Rating } from "@mui/material";
 import { type } from "os";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 interface ProductCardProps {
   product: any;
@@ -27,6 +28,7 @@ const Horizontal = () => {
   return <hr className="w-[30%] my-2" />;
 };
 const ProductDetails: React.FC<ProductCardProps> = ({ product }) => {
+  // set a product in cart state for set color and quantity in cart page
   const [cartProduct, setCartProduct] = useState<CartProductType>({
     id: product.id,
     name: product.name,
@@ -37,11 +39,42 @@ const ProductDetails: React.FC<ProductCardProps> = ({ product }) => {
     quantity: 1,
     price: product.price,
   });
+
   // rating
   const productRating =
     product.reviews.reduce((acc: number, item: any) => item.rating + acc, 0) /
     product.reviews.length;
 
+  const handleColorSelect = useCallback(
+    (value: SelectedImgType) => {
+      setCartProduct((prev) => {
+        return {
+          ...prev,
+          slectedImg: value,
+        };
+      });
+    },
+    [cartProduct.slectedImg]
+  );
+
+  // handleQtyIncrease
+  const handleQtyIncrease = useCallback(() => {
+    setCartProduct((prev) => {
+      return {
+        ...prev,
+        quantity: prev.quantity + 1,
+      };
+    });
+  }, [cartProduct.quantity]);
+  // handleQtyDecrease
+  const handleQtyDecrease = useCallback(() => {
+    setCartProduct((prev) => {
+      return {
+        ...prev,
+        quantity: prev.quantity - 1,
+      };
+    });
+  }, [cartProduct.quantity]);
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
       <div>iamge</div>
@@ -70,7 +103,14 @@ const ProductDetails: React.FC<ProductCardProps> = ({ product }) => {
         <SetColor
           images={product.images}
           cartProduct={cartProduct}
-          handleColorSelect={() => {}}
+          handleColorSelect={handleColorSelect}
+        />
+        <Horizontal />
+        <SetQuantity
+          cartCountetr
+          cartProduct={cartProduct}
+          handleQtyIncrease={handleQtyIncrease}
+          handleQtyDecrease={handleQtyDecrease}
         />
       </div>
     </div>
