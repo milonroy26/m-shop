@@ -1,5 +1,6 @@
 "use client";
 
+import Button from "@/app/components/products/Button";
 import SetColor from "@/app/components/products/SetColor";
 import SetQuantity from "@/app/components/products/SetQuantity";
 import { Rating } from "@mui/material";
@@ -112,6 +113,15 @@ const ProductDetails: React.FC<ProductCardProps> = ({ product }) => {
           handleQtyIncrease={handleQtyIncrease}
           handleQtyDecrease={handleQtyDecrease}
         />
+        <Horizontal />
+        <div className="max-w-[300px]">
+          <Button
+            label="Add to cart"
+            onClick={() => {
+              console.log(cartProduct);
+            }}
+          />
+        </div>
       </div>
     </div>
   );
