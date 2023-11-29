@@ -5,6 +5,8 @@ const nextConfig = {
       "firebasestorage.googleapis.com",
       "www.ryanscomputers.com",
       "adminapi.applegadgetsbd.com",
+      "www.applegadgetsbd.com",
+      "core.bdassistant.com",
     ],
   },
 };

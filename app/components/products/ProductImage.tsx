@@ -18,20 +18,21 @@ const ProductImage: React.FC<ProductImageProps> = ({
   handleColorSelect,
 }) => {
   return (
-    <div className="gird grid-cols-6 gap-2 h-full max-h-[500px] min-h-[300px] sm:min-h-[400px]">
-      <div className="flex flex-col items-center justify-center gap-4 cursor-pointer border h-full max-h-[500px] min-h-[300px] sm:min-h-[400px]">
+    <div className="flex gap-2 h-full max-h-[500px] min-h-[300px] sm:min-h-[400px]">
+      <div className="flex w-[20%] flex-col items-center justify-center gap-4 cursor-pointer border h-full max-h-[500px] min-h-[300px] sm:min-h-[400px] ">
         {product.images.map((image: SelectedImgType) => {
           return (
             <div
-              key={image.colorCode}
+              key={image.color}
               onClick={() => handleColorSelect(image)}
-              className={`w-[80%] aspect-square rounded border-teal-300 relative ${
-                cartProduct.slectedImg.colorCode === image.colorCode &&
-                "border-2"
+              className={`relative w-[80%] aspect-square rounded border-teal-300  ${
+                cartProduct.slectedImg.color === image.color
+                  ? "border-2"
+                  : "border-none"
               }`}
             >
               <Image
-                src={image.img}
+                src={image.image}
                 alt={product.name}
                 fill
                 className="object-contain"
@@ -39,6 +40,17 @@ const ProductImage: React.FC<ProductImageProps> = ({
             </div>
           );
         })}
+      </div>
+
+      <div className="relative aspect-square w-[80%]">
+        <Image
+          src={cartProduct.slectedImg.image}
+          alt={product.name}
+          fill
+          className="w-full h-full object-contain
+          max-h-[500px] min-h-[300px]
+          sm:min-h-[400px]"
+        />
       </div>
     </div>
   );

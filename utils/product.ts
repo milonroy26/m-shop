@@ -12,7 +12,7 @@ export const product = {
       color: "Black",
       colorCode: "#000000",
       image:
-        "https://adminapi.applegadgetsbd.com/storage/media/large/1533-91835.jpg",
+        "https://adminapi.applegadgetsbd.com/storage/media/large/1533-41338.jpg",
     },
     {
       color: "Blue",
@@ -23,7 +23,8 @@ export const product = {
     {
       color: "Red",
       colorCode: "#FF0000",
-      image: "https://www.applegadgetsbd.com/product/iphone-12",
+      image:
+        "https://adminapi.applegadgetsbd.com/storage/media/large/1533-33833.jpg",
     },
   ],
   reviews: [
